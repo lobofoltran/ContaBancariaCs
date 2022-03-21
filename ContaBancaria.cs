@@ -8,7 +8,7 @@ public class Programa1
 {
 	static void Main(string[] args)
 	{
-		ContaBancaria conta1 = new ContaPJ("João da Silva", 300.00, "123456", "PJ");
+		ContaBancaria conta1 = new ContaPJ("João da Silva", 500.00, "123456", "PJ");
 
 		System.Console.WriteLine("-------- Conta PJ --------");
 		System.Console.WriteLine();
@@ -34,12 +34,12 @@ public class Programa1
 		System.Console.WriteLine("Saque 3");
 		System.Console.WriteLine("Saldo: " + conta1.getSaldo());
 
-		conta1.sacar(500.0);
+		conta1.sacar(100.0);
 		System.Console.WriteLine();
 		System.Console.WriteLine("Saque 4");
 		System.Console.WriteLine("Saldo: " + conta1.getSaldo());
 
-		ContaBancaria conta2 = new ContaPF("João da Silva", 300.00, "123456", "PF");
+		ContaBancaria conta2 = new ContaPF("João da Silva", 500.00, "123456", "PF");
 
 		System.Console.WriteLine();
 		System.Console.WriteLine("-------- Conta PF --------");
@@ -66,12 +66,12 @@ public class Programa1
 		System.Console.WriteLine("Saque 3");
 		System.Console.WriteLine("Saldo: " + conta2.getSaldo());
 
-		conta2.sacar(500.0);
+		conta2.sacar(100.0);
 		System.Console.WriteLine();
 		System.Console.WriteLine("Saque 4");
 		System.Console.WriteLine("Saldo: " + conta2.getSaldo());
 
-		ContaBancaria conta3 = new ContaPR("João da Silva", 300.00, "123456", "PR", "Grande");
+		ContaBancaria conta3 = new ContaPR("João da Silva", 500.00, "123456", "PR", "Grande");
 
 		System.Console.WriteLine();
 		System.Console.WriteLine("-------- Conta PR --------");
@@ -98,7 +98,7 @@ public class Programa1
 		System.Console.WriteLine("Saque 3");
 		System.Console.WriteLine("Saldo: " + conta3.getSaldo());
 
-		conta3.sacar(500.0);
+		conta3.sacar(100.0);
 		System.Console.WriteLine();
 		System.Console.WriteLine("Saque 4");
 		System.Console.WriteLine("Saldo: " + conta3.getSaldo());
@@ -188,6 +188,29 @@ public class ContaBancaria
 
 }
 
+public class ContaPJ : ContaBancaria
+{
+    public ContaPJ(string nome, double saldo, string numero, string tipo) : base(nome, saldo, numero, tipo)
+    {
+    }
+
+	public override void depositar(Double valor)
+	{
+		Double desconto = (valor * 2) / 100;
+		Double saldo = getSaldo();
+		saldo += (valor - desconto);
+		setSaldo(saldo);
+	}
+
+	public override void sacar(Double valor)
+	{
+		Double saldo = getSaldo();
+		saldo = saldo - valor;
+		setSaldo(saldo);
+	}
+
+}
+
 public class ContaPF : ContaBancaria
 {
 	private int saquesDisponiveis = 0;
@@ -222,28 +245,7 @@ public class ContaPF : ContaBancaria
 		setSaldo(saldo);
 	}
 }
-public class ContaPJ : ContaBancaria
-{
-    public ContaPJ(string nome, double saldo, string numero, string tipo) : base(nome, saldo, numero, tipo)
-    {
-    }
 
-	public override void depositar(Double valor)
-	{
-		Double desconto = (valor * 2) / 100;
-		Double saldo = getSaldo();
-		saldo += (valor - desconto);
-		setSaldo(saldo);
-	}
-
-	public override void sacar(Double valor)
-	{
-		Double saldo = getSaldo();
-		saldo = saldo - valor;
-		setSaldo(saldo);
-	}
-
-}
 
 public class ContaPR : ContaBancaria
 {
