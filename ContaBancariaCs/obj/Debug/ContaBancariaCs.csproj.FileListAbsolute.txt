@@ -1,0 +1,5 @@
+C:\Users\unicesumar\Desktop\ProjetoCs2\ContaBancariaCs\ContaBancariaCs\bin\Debug\ContaBancariaCs.exe.config
+C:\Users\unicesumar\Desktop\ProjetoCs2\ContaBancariaCs\ContaBancariaCs\bin\Debug\ContaBancariaCs.exe
+C:\Users\unicesumar\Desktop\ProjetoCs2\ContaBancariaCs\ContaBancariaCs\bin\Debug\ContaBancariaCs.pdb
+C:\Users\unicesumar\Desktop\ProjetoCs2\ContaBancariaCs\ContaBancariaCs\obj\Debug\ContaBancariaCs.exe
+C:\Users\unicesumar\Desktop\ProjetoCs2\ContaBancariaCs\ContaBancariaCs\obj\Debug\ContaBancariaCs.pdb
