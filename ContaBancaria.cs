@@ -8,7 +8,7 @@ public class Programa1
 {
 	static void Main(string[] args)
 	{
-		ContaBancaria conta1 = new ContaPF("João da Silva", 800.00, "123456", "PF");
+		ContaBancaria conta1 = new ContaPJ("João da Silva", 800.00, "123456", "PJ");
 
 		conta1.depositar(100.0);
 		System.Console.WriteLine("Deposito");
@@ -103,11 +103,11 @@ public class ContaPF : ContaBancaria
 {
 	private int saquesDisponiveis = 0;
 
-    public ContaPF(string nome, double saldo, string numero, string tipo) : base(nome, saldo, numero, tipo)
-    {
+	public ContaPF(string nome, double saldo, string numero, string tipo) : base(nome, saldo, numero, tipo)
+	{
 	}
 
-    public new void depositar(Double valor)
+	public new void depositar(Double valor)
 	{
 		Double desconto = (valor * 1) / 100;
 		Double saldo = getSaldo();
@@ -116,7 +116,7 @@ public class ContaPF : ContaBancaria
 	}
 
 	public new void sacar(Double valor)
-	{	
+	{
 		Double desconto = 0.00;
 		if (valor > getSaldo())
 		{
@@ -131,5 +131,68 @@ public class ContaPF : ContaBancaria
 		Double saldo = getSaldo();
 		saldo = saldo - (valor - desconto);
 		setSaldo(saldo);
+	}
+}
+public class ContaPJ : ContaBancaria
+{
+    public ContaPJ(string nome, double saldo, string numero, string tipo) : base(nome, saldo, numero, tipo)
+    {
+    }
+
+	public new void depositar(Double valor)
+	{
+		Double desconto = (valor * 2) / 100;
+		Double saldo = getSaldo();
+		saldo += (valor - desconto);
+		setSaldo(saldo);
+	}
+
+	public new void sacar(Double valor)
+	{
+		Double saldo = getSaldo();
+		saldo = saldo - valor;
+		setSaldo(saldo);
+	}
+
+}
+
+public class ContaPR : ContaBancaria
+{
+	private int saquesDisponiveis = 0;
+
+	public ContaPR(string nome, double saldo, string numero, string tipo, string porte) : base(nome, saldo, numero, tipo)
+	{
+		setPorte(porte);
+	}
+
+	public new void depositar(Double valor)
+	{
+		Double desconto = 0.00;
+		if (valor < 1000)
+		{
+			desconto = (valor * 0.8) / 100;
+		}
+		Double saldo = getSaldo();
+		saldo += (valor - desconto);
+		setSaldo(saldo);
+	}
+
+	public new void sacar(Double valor)
+	{
+		Double desconto = 0.00;
+		if (valor > getSaldo())
+		{
+			System.Console.WriteLine("Conta PR não pode ficar com saldo negativo!");
+			return;
+		}
+		saquesDisponiveis++;
+		if (this.saquesDisponiveis > 3)
+		{
+			desconto = (valor * 1.5) / 100;
+		}
+		Double saldo = getSaldo();
+		saldo = saldo - (valor - desconto);
+		setSaldo(saldo);
+		return;
 	}
 }
