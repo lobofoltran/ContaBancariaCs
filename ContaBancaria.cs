@@ -8,12 +8,101 @@ public class Programa1
 {
 	static void Main(string[] args)
 	{
-		ContaBancaria conta1 = new ContaPJ("João da Silva", 800.00, "123456", "PJ");
+		ContaBancaria conta1 = new ContaPJ("João da Silva", 300.00, "123456", "PJ");
 
-		conta1.depositar(100.0);
-		System.Console.WriteLine("Deposito");
+		System.Console.WriteLine("-------- Conta PJ --------");
 		System.Console.WriteLine();
 		conta1.detalhes();
+
+		conta1.depositar(100.0);
+		System.Console.WriteLine();
+		System.Console.WriteLine("Deposito");
+		System.Console.WriteLine("Saldo: " + conta1.getSaldo());
+
+		conta1.sacar(100.0);
+		System.Console.WriteLine();
+		System.Console.WriteLine("Saque 1");
+		System.Console.WriteLine("Saldo: " + conta1.getSaldo());
+
+		conta1.sacar(100.0);
+		System.Console.WriteLine();
+		System.Console.WriteLine("Saque 2");
+		System.Console.WriteLine("Saldo: " + conta1.getSaldo());
+
+		conta1.sacar(100.0);
+		System.Console.WriteLine();
+		System.Console.WriteLine("Saque 3");
+		System.Console.WriteLine("Saldo: " + conta1.getSaldo());
+
+		conta1.sacar(500.0);
+		System.Console.WriteLine();
+		System.Console.WriteLine("Saque 4");
+		System.Console.WriteLine("Saldo: " + conta1.getSaldo());
+
+		ContaBancaria conta2 = new ContaPF("João da Silva", 300.00, "123456", "PF");
+
+		System.Console.WriteLine();
+		System.Console.WriteLine("-------- Conta PF --------");
+		System.Console.WriteLine();
+		conta2.detalhes();
+
+		conta2.depositar(100.0);
+		System.Console.WriteLine();
+		System.Console.WriteLine("Deposito");
+		System.Console.WriteLine("Saldo: " + conta2.getSaldo());
+
+		conta2.sacar(100.0);
+		System.Console.WriteLine();
+		System.Console.WriteLine("Saque 1");
+		System.Console.WriteLine("Saldo: " + conta2.getSaldo());
+
+		conta2.sacar(100.0);
+		System.Console.WriteLine();
+		System.Console.WriteLine("Saque 2");
+		System.Console.WriteLine("Saldo: " + conta2.getSaldo());
+
+		conta2.sacar(100.0);
+		System.Console.WriteLine();
+		System.Console.WriteLine("Saque 3");
+		System.Console.WriteLine("Saldo: " + conta2.getSaldo());
+
+		conta2.sacar(500.0);
+		System.Console.WriteLine();
+		System.Console.WriteLine("Saque 4");
+		System.Console.WriteLine("Saldo: " + conta2.getSaldo());
+
+		ContaBancaria conta3 = new ContaPR("João da Silva", 300.00, "123456", "PR", "Grande");
+
+		System.Console.WriteLine();
+		System.Console.WriteLine("-------- Conta PR --------");
+		System.Console.WriteLine();
+		conta3.detalhes();
+
+		conta3.depositar(100.0);
+		System.Console.WriteLine();
+		System.Console.WriteLine("Deposito");
+		System.Console.WriteLine("Saldo: " + conta3.getSaldo());
+
+		conta3.sacar(100.0);
+		System.Console.WriteLine();
+		System.Console.WriteLine("Saque 1");
+		System.Console.WriteLine("Saldo: " + conta3.getSaldo());
+
+		conta3.sacar(100.0);
+		System.Console.WriteLine();
+		System.Console.WriteLine("Saque 2");
+		System.Console.WriteLine("Saldo: " + conta3.getSaldo());
+
+		conta3.sacar(100.0);
+		System.Console.WriteLine();
+		System.Console.WriteLine("Saque 3");
+		System.Console.WriteLine("Saldo: " + conta3.getSaldo());
+
+		conta3.sacar(500.0);
+		System.Console.WriteLine();
+		System.Console.WriteLine("Saque 4");
+		System.Console.WriteLine("Saldo: " + conta3.getSaldo());
+		System.Console.WriteLine();
 	}
 }
 
@@ -69,12 +158,12 @@ public class ContaBancaria
 		return this.porte;
 	}
 
-	public void sacar(Double valor)
+	public virtual void sacar(Double valor)
 	{
 		this.saldo -= valor;
 	}
 
-	public void depositar(Double valor)
+	public virtual void depositar(Double valor)
 	{
 		Double taxa = 0.01;
 		if (this.tipo.Equals("PJ"))
@@ -107,7 +196,7 @@ public class ContaPF : ContaBancaria
 	{
 	}
 
-	public new void depositar(Double valor)
+	public override void depositar(Double valor)
 	{
 		Double desconto = (valor * 1) / 100;
 		Double saldo = getSaldo();
@@ -115,7 +204,7 @@ public class ContaPF : ContaBancaria
 		setSaldo(saldo);
 	}
 
-	public new void sacar(Double valor)
+	public override void sacar(Double valor)
 	{
 		Double desconto = 0.00;
 		if (valor > getSaldo())
@@ -139,7 +228,7 @@ public class ContaPJ : ContaBancaria
     {
     }
 
-	public new void depositar(Double valor)
+	public override void depositar(Double valor)
 	{
 		Double desconto = (valor * 2) / 100;
 		Double saldo = getSaldo();
@@ -147,7 +236,7 @@ public class ContaPJ : ContaBancaria
 		setSaldo(saldo);
 	}
 
-	public new void sacar(Double valor)
+	public override void sacar(Double valor)
 	{
 		Double saldo = getSaldo();
 		saldo = saldo - valor;
@@ -165,7 +254,7 @@ public class ContaPR : ContaBancaria
 		setPorte(porte);
 	}
 
-	public new void depositar(Double valor)
+	public override void depositar(Double valor)
 	{
 		Double desconto = 0.00;
 		if (valor < 1000)
@@ -177,7 +266,7 @@ public class ContaPR : ContaBancaria
 		setSaldo(saldo);
 	}
 
-	public new void sacar(Double valor)
+	public override void sacar(Double valor)
 	{
 		Double desconto = 0.00;
 		if (valor > getSaldo())
